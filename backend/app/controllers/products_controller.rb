@@ -4,14 +4,10 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     @products = Product.all
-
-    render json: @products
   end
 
   # GET /products/1
-  def show
-    render json: @product
-  end
+  def show; end
 
   # POST /products
   def create
@@ -46,6 +42,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:title, :description)
+      params.require(:product).permit(:title, :description, master_variant_attributes: %i[id price stocks])
     end
 end
