@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     if @product.save
       render json: @product, status: :created, location: @product
     else
-      render json: @product.errors, status: :unprocessable_entity
+      render json: @product.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       render json: @product
     else
-      render json: @product.errors, status: :unprocessable_entity
+      render json: @product.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -35,13 +35,14 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.require(:product).permit(:title, :description, master_variant_attributes: %i[id price stocks])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(:title, :description, master_attributes: %i[id price stocks])
+  end
 end
