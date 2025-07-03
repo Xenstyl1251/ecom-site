@@ -10,3 +10,27 @@
   display: flex;
   gap: 10px;
 }
+
+.product-description {
+  font-size: 23px;
+  line-height: 1.5;
+}
+.product-price {
+  font-size: 50px;
+  font-weight: 700px;
+}
+.add-cart {
+  padding: 20px 50px;
+  margin: 10px 0;
+  background-color: #e4d129;
+}
+
+.buy-now {
+  padding: 20px 50px;
+  margin: 10px 0;
+}
+.product-name {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 10px 0;
+}

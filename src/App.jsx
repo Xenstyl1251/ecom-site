@@ -1,22 +1,25 @@
 import product from "./assets/adidas-f50.jpg";
 
 function App() {
-  
   return (
     <div className="product-container">
       <img src={product} style={{ width: "100%" }}></img>
-      <div>₱3500</div>
-      <div>10 stocks</div>
-      <div>
+
+      <div className="product-name">Adidas F50 Elite Laceless FG</div>
+
+      <div className="product-price">₱3500</div>
+
+      <div>10 stocks available</div>
+      <div quantity-container>
         <div>quantity</div>
         <input type="number" value={1}></input>
       </div>
       <div className="btn-container">
-        <button>Add to Cart</button>
-        <button>Buy Now</button>
+        <button className="add-cart">Add to Cart</button>
+        <button className="buy-now">Buy Now</button>
       </div>
 
-      <div>
+      <div className="product-description">
         F50 Speed and Lightweight Speed: The adidas F50 series in built for
         maximum speed and agility whilst offering a locked-in and comfortable
         feel. Everything about the new generation boot is built for explosive
