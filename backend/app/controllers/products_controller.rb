@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      render json: @product, status: :created, location: @product
+      render partial: "products/product", locals: { product: @product }
     else
       render json: @product.errors.full_messages, status: :unprocessable_entity
     end
@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
-      render json: @product
+      render partial: "products/product", locals: { product: @product }
     else
       render json: @product.errors.full_messages, status: :unprocessable_entity
     end
