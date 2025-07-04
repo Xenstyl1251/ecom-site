@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import product from "../assets/adidas-f50.jpg";
 import { useState } from "react";
 
-export const Route = createFileRoute("/product")({
+export const Route = createFileRoute("/product/$id")({
   component: Product,
 });
 
