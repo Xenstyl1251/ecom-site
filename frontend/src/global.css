@@ -29,15 +29,35 @@
 
 .add-cart:hover {
   background-color: #cfbc0e;
+  cursor: pointer;
 }
 
 .buy-now {
   padding: 20px 50px;
   margin: 10px 0;
   border-radius: 50px;
+  cursor: pointer;
 }
 .product-name {
   font-size: 40px;
   font-weight: 700;
   margin: 10px 0;
+}
+
+.quantity-container {
+  display: flex;
+  gap: 5;
+}
+
+.quantity-container > button {
+  padding: 10px;
+  font-size: 20px;
+  width: 50px;
+}
+
+.quantity-container > input {
+  width: 60px;
+  text-align: center;
+  background-color: white;
+  font-size: 20px;
 }
