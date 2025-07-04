@@ -7,14 +7,14 @@ export const Route = createFileRoute("/product/$id")({
 });
 
 function Product() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   function increment() {
     setCount(count + 1);
   }
 
   function decrement() {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
     }
   }
