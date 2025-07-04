@@ -1,11 +1,18 @@
-import product from "./assets/adidas-f50.jpg";
+import { createFileRoute } from "@tanstack/react-router";
+import product from "../assets/adidas-f50.jpg";
 import { useState } from "react";
 
-function App() {
+export const Route = createFileRoute("/product")({
+  component: Product,
+});
+
+function Product() {
   const [count, setCount] = useState(0);
+
   function increment() {
     setCount(count + 1);
   }
+
   function decrement() {
     if (count > 0) {
       setCount(count - 1);
@@ -48,5 +55,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
