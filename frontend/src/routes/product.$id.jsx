@@ -1,6 +1,24 @@
-import product from "./assets/adidas-f50.jpg";
+import { createFileRoute } from "@tanstack/react-router";
+import product from "../assets/adidas-f50.jpg";
+import { useState } from "react";
 
-function App() {
+export const Route = createFileRoute("/product/$id")({
+  component: Product,
+});
+
+function Product() {
+  const [count, setCount] = useState(1);
+
+  function increment() {
+    setCount(count + 1);
+  }
+
+  function decrement() {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  }
+
   return (
     <div className="product-container">
       <img src={product} style={{ width: "100%" }}></img>
@@ -10,10 +28,13 @@ function App() {
       <div className="product-price">₱3500</div>
 
       <div>10 stocks available</div>
-      <div quantity-container>
-        <div>quantity</div>
-        <input type="number" value={1}></input>
+
+      <div className="quantity-container">
+        <button onClick={decrement}>-</button>
+        <input value={count} />
+        <button onClick={increment}>+</button>
       </div>
+
       <div className="btn-container">
         <button className="add-cart">Add to Cart</button>
         <button className="buy-now">Buy Now</button>
@@ -34,5 +55,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
