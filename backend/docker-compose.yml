@@ -1,4 +1,5 @@
-name: econ_site
+name: ecom_site
+
 services:
   db:
     image: "postgres:17.2-bookworm"
@@ -12,5 +13,29 @@ services:
       DATABASE_PASSWORD: $DB_PASSWORD
     volumes:
       - data:/var/lib/postgresql@15/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", $DB_USER]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  app:
+    build:
+      context: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      BUNDLE_WITHOUT: "production"
+      DB_USER: $DB_USER
+      DB_NAME: $DB_NAME
+      DB_PASSWORD: $DB_PASSWORD
+      DB_HOST: ecom_db
+      DB_PORT: 5432
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
+
 volumes:
   data:
