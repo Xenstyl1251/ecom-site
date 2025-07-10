@@ -35,7 +35,7 @@ services:
       DB_PASSWORD: $DB_PASSWORD
       DB_HOST: ecom_db
       DB_PORT: 5432
-    command: bundle exec rails server -b 0.0.0.0 -p 3000
+    # command: bundle exec rails server -b 0.0.0.0 -p 3000
 
 volumes:
   data:
