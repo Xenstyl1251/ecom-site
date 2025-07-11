@@ -1,0 +1,46 @@
+FROM ruby:3.3.0
+
+RUN apt-get update -qq && apt-get install -y \
+  build-essential \
+  libpq-dev \
+  curl \
+  gnupg2 \
+  libvips \
+  poppler-utils \
+  postgresql-client \
+  iputils-ping
+
+# Set working directory
+WORKDIR /app
+
+# Copy the rest of the application code
+COPY Gemfile Gemfile.lock   ./
+COPY .ruby-version          .ruby-version
+COPY config.ru              config.ru
+COPY Rakefile               Rakefile
+COPY bin                    bin/
+COPY config                 config/
+COPY db                     db/
+COPY lib                    lib/
+COPY app                    app/
+COPY public                 public/
+COPY vendor                 vendor/
+
+# Install Bundler
+RUN gem install bundler -v 2.5.10
+
+# Install gems
+RUN bundle install
+
+# Precompile Assets
+# RUN SECRET_KEY_BASE=`bin/rails secret` bin/rake assets:precompile --trace
+
+# Copy Entrypoint
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+
+# Expose port 3000
+EXPOSE 3000
+
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "3000"]

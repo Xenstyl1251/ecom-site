@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_03_084600) do
     t.string "currency", default: "php", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_products_on_title"
   end
 
   create_table "variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
